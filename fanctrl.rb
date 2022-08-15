@@ -1,15 +1,17 @@
 # Each line: [ temp C, fan speed % ]
 CURVE = [
-  [0, 0],
-  [10, 0],
-  [30, 5],
-  [40, 10],
-  [50, 30],
-  [70, 60],
-  [80, 100]
+  [-100, 40]  # I'm a hardcore user of R210. In place that I live we have -30C in winter and 30C degrees in summer.
+  [0, 15],    # Chassis is poorly located in the attic.
+  [10, 15]
+  [50, 20],
+  [55, 30],
+  [65, 40],
+  [75, 50],
+  [85, 60],
+  [90, 100]
 ]
 
-MANUAL_CUTOFF = 65  # When to disable OS fan control
+MANUAL_CUTOFF = 90  # When to disable OS fan control
 
 DT = 5              # Check every DT seconds
 
@@ -25,7 +27,7 @@ def get_fan_speed temp
     b = CURVE[i + 1]
 
     if temp >= a[0] && temp <= b[0]
-      power = a[1] + (temp - a[0]) * (b[1] - a[1]) / (b[0] - a[0])
+      power = a[1]# + (temp - a[0]) * (b[1] - a[1]) / (b[0] - a[0]) # Changing noise is worse than constant one
       break
     end
 
@@ -52,6 +54,7 @@ loop do
 
   set_manual_fan_ctrl manual
   set_fan_speed(fan_speed) if manual
-
+  # Unable to send RAW command (channel=0x0 netfn=0x30 lun=0x0 cmd=0x30 rsp=0xcc): Invalid data field in request
+  # Above message can be ignored in case of R210II. Fans change speed even when it's promted.
   sleep DT
 end
