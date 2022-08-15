@@ -1,5 +1,7 @@
-Dell IPMI Fan Control
+Dell IPMI Fan Control (R210II Branch)
 ====
+This is a fork of [https://github.com/VV0JC13CH/DellIPMIFanCtrl](DellIPMIFanCtrl) dedicated to the specific Dell R210II unit.
+Please read ### comments in fanctrl.rb in order to know differences between this and main branch.
 
 Simple ruby script / systemd service for controlling fans with a fan profile on Dell servers.
 
