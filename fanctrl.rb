@@ -1,8 +1,8 @@
 # Each line: [ temp C, fan speed % ]
 CURVE = [
-  [-100, 40]  # I'm a hardcore user of R210. In place that I live we have -30C in winter and 30C degrees in summer.
+  [-100, 40],  # I'm a hardcore user of R210. In place that I live we have -30C in winter and 30C degrees in summer.
   [0, 15],    # Chassis is poorly located in the attic.
-  [10, 15]
+  [10, 15],
   [50, 20],
   [55, 30],
   [65, 40],
